@@ -1,5 +1,5 @@
 {
-    "name": "vilshub/xhrHandler",
+    "name": "vilshub/http",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -10,12 +10,12 @@
     ],
     "minimum-stability": "dev",
     "require": {
-      "php":">=5.3.0",
+      "php":">=7.0.0",
       "vilshub/helpers": "*"
     },
     "autoload": {
         "psr-4": {
-            "vilshub\\xhrHandler\\" : "src"
+            "vilshub\\http\\" : "src"
         }
     }
 }
