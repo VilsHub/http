@@ -1,5 +1,6 @@
 {
     "name": "vilshub/http",
+    "description": "helpers is PHP library which all other vilshub PHP libraries depend on.",
     "type": "library",
     "license": "MIT",
     "authors": [
