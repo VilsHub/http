@@ -1,5 +1,5 @@
-# dbAnt Overview
-xhrHandler is PHP library for handling XML HTTP REQUEST
+# http Overview
+http is PHP library for handling HTTP REQUEST
 
 ## Requirements
 
@@ -7,4 +7,4 @@ xhrHandler is PHP library for handling XML HTTP REQUEST
 - vilshub/helpers library
 
 ## Installation
-It supports composer installation, with link **composer require vilshub/xhrHandler** 
+It supports composer installation, with link **composer require vilshub/http** 
