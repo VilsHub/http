@@ -71,12 +71,14 @@
         }
 
         public function fromFile($inputName = null){
-          if($_SERVER["REQUEST_METHOD"] == "FILE"){
-            if($inputName !=  null){
-             
+          if($inputName !=  null){
+            if(isset($_FILES[$inputName])){
+              return $_FILES[$inputName];
             }else{
-              return $_FILES;
+              return null;
             }
+          }else{
+            return $_FILES;
           }
         }
 
@@ -107,25 +109,25 @@
 
     public static function get($route, $handlerOrCm){
       if(Request::$method == "GET"){
-        Route::validateRoute($route, $handlerOrCm);
+        Route::validateRoute($route, $handlerOrCm, "api");
       }
     }
 
     public static function post($route, $handlerOrCm){
       if(Request::$method == "POST"){
-        Route::validateRoute($route, $handlerOrCm);
+        Route::validateRoute($route, $handlerOrCm, "api");
       }
     }
 
     public static function put($route, $handlerOrCm){
       if(Request::$method == "PUT"){
-        Route::validateRoute($route, $handlerOrCm);
+        Route::validateRoute($route, $handlerOrCm, "api");
       }
     }
 
     public static function delete($route, $handlerOrCm){
       if(Request::$method == "DELETE"){
-        Route::validateRoute($route, $handlerOrCm);
+        Route::validateRoute($route, $handlerOrCm, "api");
       }
     }
    }
