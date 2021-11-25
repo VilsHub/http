@@ -15,11 +15,13 @@
     */
     define("METHOD", $_SERVER["REQUEST_METHOD"]);   
     define("URI", $_SERVER["REQUEST_URI"]);   
+    define("ID", explode("/", URI)[1]);  
     class Request
    {
 
     public static $method = METHOD;
     public static $uri = URI;
+    public static $id = ID;
 
     public static function data($clean=null){
       $istream = new class ($clean) {
@@ -130,5 +132,30 @@
         Route::validateRoute($route, $handlerOrCm, "api");
       }
     }
-   }
+
+    public static function isForApplication($applications){
+      return array_key_exists(Request::$id, $applications);
+    }
+
+    public static function isFor($type, $apiId, $routeSegment){
+      /**
+      * @param string $type The route type to check : api | web
+      * @param string $apiId api segment
+      * @param string $routeSegment The route segment which identifies the API
+      */
+
+      $routeSegments  = explode("/", $_SERVER["REQUEST_URI"]);
+      $total          = count($routeSegments);
+      $routeSegment   = ($routeSegment == 2 && $total < 3) ? 1:$routeSegment;
+
+      $apiID          = strtolower($routeSegments[$routeSegment]);
+      
+      if(strtolower($type) == "api"){//Check if its API
+          return $apiID == $apiId ? true : false;
+      }else{//Its web route
+          return $apiID != $apiId ? true : false;
+      }
+    }
+
+  }
 ?>
