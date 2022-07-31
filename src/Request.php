@@ -134,7 +134,7 @@
     }
 
     public static function isForApplication($applications){
-      return array_key_exists(Request::$id, $applications);
+      return in_array(Request::$id, $applications);
     }
 
     public static function isFor($type, $apiId, $routeSegment){
