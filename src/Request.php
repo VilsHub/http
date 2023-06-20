@@ -27,20 +27,27 @@
       $istream = new class ($clean) {
         private $clean;
         function __construct($clean){
-          $this->clean = $clean;
+          $this->clean = $clean??"";
         }
         
-        public function fromPost($inputName = null){
+        public function fromPost($inputName = null, $dataType = "string"){
           if(Request::$method == "POST"){
             if($inputName !=  null){
               if(isset($_POST[$inputName])){
+                $parsedValue  = null;
                 switch (strtolower($this->clean)) {
                   case 'clean':
-                    return DataParser::inText($_POST[$inputName]);
+                    $parsedValue = DataParser::inText($_POST[$inputName]);
                     break;
                   default:
-                    return $_POST[$inputName];
+                    $parsedValue  = $_POST[$inputName];
                     break;
+                }
+
+                if($dataType == "string"){
+                  return $parsedValue;
+                }else if($dataType == "array"){
+                  return json_decode($parsedValue, true);
                 }
               }else{
                 return null;
